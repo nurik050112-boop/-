@@ -1,0 +1,39 @@
+name: keep-awake
+
+# Раз в день шлёт один запрос к Supabase, чтобы бесплатный проект не «уснул»
+# после недели без активности. Никаких данных не меняет — только пинг.
+
+on:
+  schedule:
+    - cron: "23 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+    steps:
+      - name: Check configuration
+        run: |
+          set -euo pipefail
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "::error::Не настроены GitHub Secrets SUPABASE_URL и SUPABASE_ANON_KEY"
+            exit 1
+          fi
+
+      - name: Ping the database
+        run: |
+          set -euo pipefail
+          endpoint="${SUPABASE_URL%/}/rest/v1/entries?select=id&limit=1"
+          code=$(curl --silent --show-error --fail-with-body \
+            --retry 3 --retry-all-errors --connect-timeout 10 --max-time 30 \
+            --output /tmp/supabase-response --write-out "%{http_code}" \
+            "$endpoint" \
+            --header "apikey: $SUPABASE_ANON_KEY")
+          echo "Supabase database ping succeeded: HTTP $code"

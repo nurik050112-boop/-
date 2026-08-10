@@ -1,0 +1,102 @@
+:root {
+  --bg: #f5f4ef;
+  --card: #fbfaf7;
+  --ink: #1a1a1a;
+  --soft: #5b5854;
+  --clay: #d97757;
+  --line: #e6e3da;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { background: var(--bg); }
+
+.container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header h1 { font-size: 28px; font-weight: 800; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 { font-size: 22px; margin-bottom: 16px; }
+
+.form, .form-row { display: flex; gap: 10px; }
+.form { flex-direction: column; }
+
+input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 16px;
+  background: #fff;
+  color: var(--ink);
+}
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--clay);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.6; cursor: default; }
+
+button.ghost {
+  background: transparent;
+  color: var(--soft);
+  font-weight: 500;
+}
+button.small { padding: 6px 10px; font-size: 14px; }
+
+.message { margin-top: 12px; color: var(--clay); font-size: 14px; }
+.hello { color: var(--soft); margin-bottom: 8px; }
+.empty { color: var(--soft); margin-top: 16px; }
+
+.list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.hello {
+  margin-top: 18vh;
+  text-align: center;
+}
+.hello h1 { font-size: 44px; font-weight: 800; margin-bottom: 16px; }
+.hello p { font-size: 18px; color: var(--soft); line-height: 1.5; }
+.hello__hint {
+  margin-top: 20px;
+  display: inline-block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: var(--ink);
+}
