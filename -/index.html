@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#091321" />
+    <meta name="description" content="Историческая викторина о восстановлении экономики Европы после Второй мировой войны." />
+    <title>Возрождение Европы — историческая миссия</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient--one" aria-hidden="true"></div>
+    <div class="ambient ambient--two" aria-hidden="true"></div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>АРХИВ ВОССТАНОВЛЕНИЯ</span>
+        </div>
+        <div class="topbar-note"><span class="status-dot"></span> ИСТОРИЧЕСКАЯ МИССИЯ</div>
+      </header>
+
+      <main>
+        <section id="screen-intro" class="screen screen--intro is-visible" aria-labelledby="game-title">
+          <div class="intro-copy">
+            <p class="eyebrow"><span>ЕВРОПА</span><span class="eyebrow-line"></span><span>1945—1963</span></p>
+            <h1 id="game-title">Возрождение<br /><em>Европы</em></h1>
+            <p class="intro-lead">Историческая викторина о том, как страны поднимались после Второй мировой войны.</p>
+            <p class="intro-body">Помоги репортёру Льву пройти путь от разрушенных городов до экономического подъёма. Каждый верный ответ приближает Европу к новой жизни.</p>
+
+            <div class="mission-facts" aria-label="Правила игры">
+              <div class="fact"><span class="fact-icon">20</span><span>вопросов</span></div>
+              <div class="fact"><span class="fact-icon">15<small>с</small></span><span>на ответ</span></div>
+              <div class="fact"><span class="fact-icon">4</span><span>этапа пути</span></div>
+            </div>
+
+            <button id="start-button" class="button button--primary">
+              <span>Начать миссию</span><span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="no-audio-note"><span class="caption-indicator"></span> Реплики героя показаны титрами. Озвучки нет.</p>
+          </div>
+
+          <div class="intro-scene">
+            <div class="scene-art scene-art--intro">
+              <img src="assets/scene.png" alt="Молодой репортёр на фоне европейского города после войны" />
+              <div class="scene-vignette"></div>
+              <div class="scene-location"><span class="location-pin">✦</span> БЕРЛИН · 1945</div>
+              <div class="caption caption--intro">
+                <div class="caption-heading"><span class="caption-indicator"></span> ЛЕВ · РЕПЛИКА</div>
+                <p>«Война оставила города в руинах. Сможем ли мы вернуть Европе будущее?»</p>
+              </div>
+            </div>
+            <div class="scene-footnote"><span class="footnote-rule"></span><span>ТВОЯ ЗАДАЧА</span><span>ВОССТАНОВИТЬ ГОРОД</span></div>
+          </div>
+        </section>
+
+        <section id="screen-game" class="screen screen--game" aria-labelledby="question-text" aria-live="polite">
+          <div class="game-topline">
+            <button id="home-button" class="text-button" type="button"><span aria-hidden="true">←</span> На главную</button>
+            <div class="game-progress-copy"><span id="chapter-kicker">ЭТАП 1</span><span class="progress-divider"></span><span id="progress-copy">ВОПРОС 1 ИЗ 20</span></div>
+          </div>
+
+          <div class="overall-progress" aria-label="Прогресс игры"><div id="overall-progress-fill"></div></div>
+
+          <div class="game-layout">
+            <aside class="mission-panel" aria-label="Путь восстановления">
+              <div class="scene-art scene-art--game">
+                <img src="assets/scene.png" alt="" />
+                <div class="scene-vignette"></div>
+                <div class="scene-year" id="scene-year">БЕРЛИН · 1945</div>
+                <div class="caption caption--game">
+                  <div class="caption-heading"><span class="caption-indicator"></span><span id="speaker-label">ЛЕВ · ТИТР</span></div>
+                  <p id="story-line"></p>
+                </div>
+              </div>
+
+              <div class="city-board" id="city-board" aria-label="Панорама восстановления города">
+                <div class="city-board-heading"><span>ГОРОД В 2D</span><span id="city-state" aria-live="polite">РУИНЫ · 1945</span></div>
+                <svg class="city-svg" viewBox="0 0 520 156" role="img" aria-label="Панорама города после войны">
+                  <defs>
+                    <linearGradient id="city-sky" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#1d3950" />
+                      <stop offset="1" stop-color="#111d2b" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="520" height="156" fill="url(#city-sky)" />
+                  <circle cx="443" cy="34" r="12" fill="#e7bd7c" opacity=".74" />
+                  <path d="M0 130h520v26H0z" fill="#101925" />
+                  <g class="city-building" data-restored-at="1">
+                    <path class="building-shape" d="M15 130V73h25V59h17l13 10 13-17 17 18h16v60z" />
+                    <path class="building-edge" d="M40 72v-13m30 10V54m17 16-2-7m17 9-1-11" />
+                    <rect class="city-window" x="29" y="88" width="9" height="11" rx="1" /><rect class="city-window" x="51" y="88" width="9" height="11" rx="1" /><rect class="city-window" x="82" y="88" width="9" height="11" rx="1" /><rect class="city-window" x="101" y="88" width="9" height="11" rx="1" />
+                    <rect class="city-window" x="29" y="108" width="9" height="11" rx="1" /><rect class="city-window" x="51" y="108" width="9" height="11" rx="1" /><rect class="city-window" x="82" y="108" width="9" height="11" rx="1" /><rect class="city-window" x="101" y="108" width="9" height="11" rx="1" />
+                  </g>
+                  <g class="city-building" data-restored-at="5">
+                    <path class="building-shape" d="M124 130V56h75v74zm11-74 10-14 12 14" />
+                    <path class="building-edge" d="M146 43V30h32v13" />
+                    <rect class="city-window" x="136" y="68" width="10" height="12" rx="1" /><rect class="city-window" x="154" y="68" width="10" height="12" rx="1" /><rect class="city-window" x="176" y="68" width="10" height="12" rx="1" />
+                    <rect class="city-window" x="136" y="91" width="10" height="12" rx="1" /><rect class="city-window" x="154" y="91" width="10" height="12" rx="1" /><rect class="city-window" x="176" y="91" width="10" height="12" rx="1" />
+                    <rect class="city-window" x="154" y="111" width="10" height="19" rx="4" />
+                  </g>
+                  <g class="city-building" data-restored-at="9">
+                    <path class="building-shape" d="M208 130V83h24V68h20V51h22v79z" />
+                    <path class="building-edge" d="M232 69V57h20v11m22-17v-8h16v8" />
+                    <rect class="city-window" x="218" y="94" width="9" height="10" rx="1" /><rect class="city-window" x="238" y="79" width="9" height="10" rx="1" /><rect class="city-window" x="257" y="64" width="9" height="10" rx="1" /><rect class="city-window" x="275" y="64" width="9" height="10" rx="1" />
+                    <rect class="city-window" x="218" y="112" width="9" height="10" rx="1" /><rect class="city-window" x="238" y="98" width="9" height="10" rx="1" /><rect class="city-window" x="257" y="84" width="9" height="10" rx="1" /><rect class="city-window" x="275" y="84" width="9" height="10" rx="1" />
+                  </g>
+                  <g class="city-building" data-restored-at="14">
+                    <path class="building-shape" d="M298 130V70h18V57h20V43h18v27h25v60z" />
+                    <path class="building-edge" d="M316 57V47h20v10m18-14v-9h12v9" />
+                    <rect class="city-window" x="306" y="81" width="10" height="12" rx="1" /><rect class="city-window" x="330" y="72" width="10" height="12" rx="1" /><rect class="city-window" x="350" y="83" width="10" height="12" rx="1" /><rect class="city-window" x="370" y="83" width="10" height="12" rx="1" />
+                    <rect class="city-window" x="306" y="103" width="10" height="12" rx="1" /><rect class="city-window" x="330" y="96" width="10" height="12" rx="1" /><rect class="city-window" x="350" y="104" width="10" height="12" rx="1" /><rect class="city-window" x="370" y="104" width="10" height="12" rx="1" />
+                  </g>
+                  <g class="city-building" data-restored-at="20">
+                    <path class="building-shape" d="M394 130V79l32-24 32 24v51zm-4 0h74" />
+                    <path class="building-edge" d="M421 58V43h10v15" />
+                    <rect class="city-window" x="409" y="84" width="10" height="12" rx="1" /><rect class="city-window" x="435" y="84" width="10" height="12" rx="1" />
+                    <rect class="city-window" x="409" y="105" width="10" height="12" rx="1" /><rect class="city-window" x="435" y="105" width="10" height="12" rx="1" />
+                  </g>
+                  <path d="M0 142h520" stroke="#536878" stroke-opacity=".55" />
+                  <path d="M0 149h520" stroke="#263b4c" stroke-width="2" />
+                </svg>
+                <div class="city-board-footer"><span>1945</span><div class="city-progress"><span id="city-progress-fill"></span></div><span id="city-score">0 / 20</span></div>
+              </div>
+
+              <div class="route-card">
+                <div class="route-header"><span>МАРШРУТ</span><span id="score-label">0 / 20</span></div>
+                <ol id="route-list" class="route-list">
+                  <li class="route-stop is-current"><span class="route-number">01</span><span class="route-name">Города в руинах</span><span class="route-check">✓</span></li>
+                  <li class="route-stop"><span class="route-number">02</span><span class="route-name">Планы восстановления</span><span class="route-check">✓</span></li>
+                  <li class="route-stop"><span class="route-number">03</span><span class="route-name">Промышленный рывок</span><span class="route-check">✓</span></li>
+                  <li class="route-stop"><span class="route-number">04</span><span class="route-name">Новая Европа</span><span class="route-check">✓</span></li>
+                </ol>
+              </div>
+            </aside>
+
+            <section class="question-card">
+              <div class="question-meta">
+                <div>
+                  <p class="question-label" id="chapter-label">ГОРОДА В РУИНАХ</p>
+                  <p class="question-index" id="question-index">ВОПРОС 01 / 20</p>
+                </div>
+                <div id="timer-ring" class="timer-ring" role="timer" aria-label="Осталось 15 секунд">
+                  <span id="timer-value">15</span><small>СЕК</small>
+                </div>
+              </div>
+
+              <h2 id="question-text"></h2>
+              <div id="answer-list" class="answer-list" role="group" aria-label="Выберите один ответ"></div>
+
+              <div id="feedback" class="feedback" aria-live="assertive" hidden>
+                <div class="feedback-title" id="feedback-title"></div>
+                <p id="feedback-detail"></p>
+                <button id="continue-button" class="button button--continue" type="button"><span id="continue-label">Дальше</span><span aria-hidden="true">→</span></button>
+              </div>
+              <p class="keyboard-hint">Можно выбрать ответ клавишами <kbd>1</kbd>–<kbd>4</kbd></p>
+            </section>
+          </div>
+        </section>
+
+        <section id="screen-finish" class="screen screen--finish" aria-labelledby="finish-title">
+          <div class="finish-card">
+            <div class="finish-medal" aria-hidden="true">✦</div>
+            <p class="eyebrow"><span>МИССИЯ ЗАВЕРШЕНА</span><span class="eyebrow-line"></span><span>1963</span></p>
+            <h2 id="finish-title">Европа снова<br /><em>дышит</em></h2>
+            <p id="finish-story" class="finish-story"></p>
+            <div class="final-score"><span id="final-score">0</span><span class="score-total">/ 20</span></div>
+            <p id="final-rank" class="final-rank"></p>
+            <div class="finish-summary">
+              <div><span class="summary-value" id="correct-summary">0</span><span>верных ответов</span></div>
+              <div><span class="summary-value">20</span><span>пройдено вопросов</span></div>
+            </div>
+            <button id="restart-button" class="button button--primary" type="button"><span>Пройти ещё раз</span><span class="button-arrow" aria-hidden="true">↻</span></button>
+            <p class="finish-footnote">Все реплики были показаны текстом — без озвучки.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"><span>ИСТОРИЯ · 1945—1963</span><span>ВОССТАНОВЛЕНИЕ ЕВРОПЫ</span></footer>
+    </div>
+  </body>
+</html>
