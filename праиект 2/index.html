@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monster Chase Parkour</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section id="menu" class="menu">
+      <div class="poster">
+        <span class="poster-road"></span>
+        <span class="hero-shape"></span>
+        <span class="monster-shape"></span>
+      </div>
+      <h1>Monster Chase</h1>
+      <div class="menu-grid">
+        <button id="playBtn">Start Run</button>
+        <button id="heroSkinBtn">Hero Skin</button>
+        <button id="monsterSkinBtn">Monster Skin</button>
+      </div>
+      <div class="select-row">
+        <label for="levelSelect">Level</label>
+        <select id="levelSelect"></select>
+      </div>
+      <div class="skin-panel">
+        <span id="heroSkinText">Hero: Neon</span>
+        <span id="monsterSkinText">Monster: Shadow</span>
+      </div>
+      <p>100 levels. Every level gets faster, tighter, and meaner.</p>
+    </section>
+
+    <section class="hud">
+      <div><span>Level</span><strong id="levelText">1 / 100</strong></div>
+      <div><span>Distance</span><strong id="distanceText">0 m</strong></div>
+      <div><span>Lives</span><strong id="livesText">3</strong></div>
+      <div><span>Hunter</span><strong id="dangerText">far</strong></div>
+      <button id="pauseBtn" title="Pause">II</button>
+      <button id="restartBtn" title="Restart">R</button>
+    </section>
+
+    <canvas id="game" width="960" height="540"></canvas>
+
+    <section class="status-row">
+      <strong id="message">Choose a level and start</strong>
+      <span>A/D move, W/Space jump, S slide. Red gates flip gravity.</span>
+    </section>
+
+    <section class="touch-controls">
+      <button data-hold="left">L</button>
+      <button data-hold="slide">Slide</button>
+      <button data-hold="right">R</button>
+      <button data-tap="jump">Jump</button>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

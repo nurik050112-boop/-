@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stick Duel Arena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="phone-frame">
+    <section id="menu" class="menu">
+      <div class="brand-mark">
+        <span class="stick cyan"></span>
+        <span class="blade orange"></span>
+        <span class="blade blue"></span>
+        <span class="stick yellow"></span>
+      </div>
+      <h1>Stick Duel Arena</h1>
+      <div class="menu-actions">
+        <button id="playBtn">Play</button>
+        <button id="botBtn">2 Players</button>
+        <button id="hostBtn">Host LAN</button>
+        <button id="joinBtn">Join LAN</button>
+      </div>
+      <div class="select-row lan-row">
+        <label for="roomInput">Room</label>
+        <input id="roomInput" value="room1" maxlength="18">
+      </div>
+      <div class="select-row">
+        <label for="arenaSelect">Arena</label>
+        <select id="arenaSelect">
+          <option value="ice">Ice cliffs</option>
+          <option value="forest">Green temple</option>
+          <option value="lava">Lava bridge</option>
+        </select>
+      </div>
+      <div class="save-panel">
+        <span id="saveStatus">Save: local</span>
+        <span id="statsText">Wins 0 / 0</span>
+      </div>
+      <p class="hint">P1: A D W F. P2: arrows and /. Space changes weapon.</p>
+    </section>
+
+    <section class="hud">
+      <div class="fighter-card cyan">
+        <span>P1</span>
+        <div class="health"><span id="p1Health"></span></div>
+        <strong id="p1Score">0</strong>
+      </div>
+      <button id="pauseBtn" class="small-btn" title="Pause">II</button>
+      <button id="restartBtn" class="small-btn" title="Restart">R</button>
+      <div class="fighter-card yellow">
+        <strong id="p2Score">0</strong>
+        <div class="health"><span id="p2Health"></span></div>
+        <span>P2</span>
+      </div>
+    </section>
+
+    <canvas id="game" width="960" height="540"></canvas>
+
+    <section class="status-row">
+      <strong id="roundText">Round 1</strong>
+      <button id="weaponBtn">Weapon: swords</button>
+      <span id="message">Press Play</span>
+    </section>
+
+    <section class="touch-controls">
+      <div class="pad">
+        <button data-hold="p1Left">L</button>
+        <button data-hold="p1Jump">J</button>
+        <button data-hold="p1Right">R</button>
+        <button class="hit" data-tap="p1Strike">Hit</button>
+      </div>
+      <div class="pad">
+        <button data-hold="p2Left">L</button>
+        <button data-hold="p2Jump">J</button>
+        <button data-hold="p2Right">R</button>
+        <button class="hit" data-tap="p2Strike">Hit</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
